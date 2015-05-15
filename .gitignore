@@ -1,12 +1,13 @@
 *.class
 *.DS_Store
 
-*/build/
-*/bin/
+build/
+bin/
 
-*/RemoteSystemsTempFiles/
-*/runtime-plugin-sandbox/
-*/JSpider/output/
+.metadata/
+RemoteSystemsTempFiles/
+runtime-plugin-sandbox/
+JSpider/output/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
