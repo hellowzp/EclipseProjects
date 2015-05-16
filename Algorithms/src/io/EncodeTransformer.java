@@ -48,7 +48,7 @@ public class EncodeTransformer {
 	      BufferedWriter bw = new BufferedWriter(
 	    		  new OutputStreamWriter(
 	    				  new FileOutputStream(target), tgtEncoding)); ) {
-	          char[] buffer = new char[16384];
+	          char[] buffer = new char[4096];
 	          int read;
 	          while ((read = br.read(buffer)) != -1)
 	              bw.write(buffer, 0, read);
@@ -96,7 +96,7 @@ public class EncodeTransformer {
 //					wr.write(line);				
 //			} 
 			
-			if(srcPath.toString().endsWith(".java") || srcPath.toString().endsWith(".xml"))
+			if( srcPath.toString().endsWith(".jsp") || srcPath.toString().endsWith(".properties") )
 				transform(srcPath.toFile(), srcEncoding.name(), desPath.toFile(), desEncoding.name());
 		} else {
 			//create the directory first, otherwise it will throw NoSuchFileException when creating files
@@ -114,7 +114,7 @@ public class EncodeTransformer {
 	
 	public static void main(String[] args) {
 		Path src = Paths.get("/Users/Benchun/Documents/Engineering/NetBeans/AuctionJavaEE");
-		Path des = Paths.get("/Users/Benchun/Documents/Engineering/NetBeans/AuctionJavaEE_Copy");
+		Path des = Paths.get("/Users/Benchun/Documents/Engineering/NetBeans/AuctionJavaEE_Copy2");
 		Charset srcCharset = Charset.forName("GB2312"); //unmapped charset
 		Charset desCharset = StandardCharsets.UTF_8;
 		try {
