@@ -1,9 +1,0 @@
-canvas 300 400
-point 20 40 P1
-point 40 50 P2
-line p1 p2
-
-function test
-{
-	point 40 50 p3
-}
