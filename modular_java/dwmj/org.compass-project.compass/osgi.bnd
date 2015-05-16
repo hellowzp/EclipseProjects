@@ -1,0 +1,16 @@
+#--------------------------------------------------------------------------
+# Use this file to add customized Bnd instructions for the wrapped library
+#--------------------------------------------------------------------------
+
+#
+# this unpacks the contents of the wrapped jar artifact inside the bundle
+# to also inline dependencies of this artifact add Embed-Transitive: true
+#
+# START:embed.dependency
+Embed-Dependency:\
+ *;scope=compile|runtime;type=!pom;inline=true,\
+ lucene-core;groupId=org.apache.lucene;inline=false
+# END:embed.dependency
+# START:resolution.optional
+Import-Package: *;resolution:=optional
+# END:resolution.optional

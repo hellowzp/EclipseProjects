@@ -1,0 +1,50 @@
+body {
+    font-family:arial;
+}
+
+.firstEntry {
+    border-top: 1px solid #999999;
+}
+
+.entry {
+    border-bottom: 1px solid #999999;
+    font-size:small;
+}
+
+.summaryRow {
+    font-weight:bold;
+    font-size:small;
+    width:100%;
+}
+
+.detailsRow {
+    font-size:small;
+    display:none;
+    background-color:#eeeeee;
+    width:100%;
+}
+
+.resultsList {
+    margin-left:50px;
+    margin-right:50px;
+}
+
+.resultsHeader {
+    width:100%;
+    background-color:#eeeeff;
+    border-top:1px solid #000099;
+    padding:3px;
+    font-size:small;
+}
+
+.label {
+    text-align:right;
+    font-weight:bold;
+}
+
+.pomDependency {
+	font-family:monospace;
+	whitespace:pre;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}

@@ -1,0 +1,376 @@
+/*
+PLEASE DO NOT REMOVE THESE INSTRUCTIONS!!!
+it does not matter if you copy them along, this is an sql comment
+run these sql statements in your local database to create the necessary tables and entries.
+you will then have to edit the medoo.php file to fit your local database, edit:
+$server on line 15 to localhost
+$username on line 17
+$password on line 19
+$database_name on line 29
+keep in mind that you still need to go through readingCard.php to log in (this will store some data in $_SESSION)
+do not commit changes in medoo.php to SVN, otherwise everyone will have to edit it again
+
+For the translations:
+add a string to the translations table below, add an entry for every language (English, Nederlands, Francais, Deutsch)
+The first column (id) has no meaning whatsoever, it just serves as a unique identifier
+The second column (stringid) defines what string it is. fill this in in the getString($id) function
+Check below for ranges for every page
+The third column is the language
+The fourth column is the actual string, please add [language] to a string if it is the same the english one.
+
+I have added a getString($id) function do not forget to echo the result of this function.
+I have added an addHelp function, for usage see home.php
+to make the help string take all the text in the help section of the page and concatinate it with | characters in between
+
+For every stringid there should be 4 entries. one for each language
+I used the first value in the range for the help string, maybe it would be smart to do this consistently
+
+stringid values:
+1-20		tests.devices
+21-40	tests.instructions
+41-60	datatypes.name
+61-80	general strings
+101-120	login.php
+121-140	hello.php
+141-160	home.php
+161-170 chooseTest.php
+171-180 confirmTest.php
+181-190 genericTest.php
+Add to this list if you process a page 
+
+general strings:
+61: balance
+*/
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`firstname` text NOT NULL,
+	`lastname` text NOT NULL,
+	`balance` double NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `tests`;
+CREATE TABLE `tests` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`device` int(11) NOT NULL,
+	`price` double NOT NULL,
+	`duration` int(11) NOT NULL,
+	`instructions` int(11) NOT NULL,
+	`pictures` varchar(1000) NOT NULL,
+	`icon` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `datatypes`;
+CREATE TABLE `datatypes` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`name` int(11) NOT NULL,
+	`datafields` int(11) NOT NULL,
+	`unit` varchar(45) NOT NULL,
+	`seriesnames` varchar(255) DEFAULT NULL,
+	`testid` int(11) NOT NULL,
+	`icon` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `measurements`;
+CREATE TABLE `measurements` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`profileid` int(11) NOT NULL,
+	`date` date NOT NULL,
+	`type` int(11) NOT NULL,
+	`data` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `translations`;
+CREATE TABLE `translations` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+    `stringid` int(11) NOT NULL,
+    `language` varchar(255) NOT NULL,
+    `value` varchar(10000) NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `users` VALUES (1,'Tom','Salens',10);
+
+
+INSERT INTO `tests` VALUES
+(1,1,1.25,7,21,'bloodPressureStep1.png|FeetFlat.png|BloodPressureStrip.png|BloodPressureStartStop.png|BloodPressureMeasuring.png|BloodPressurePullStripOff.png|BloodPressureUpload.png|BloodPressureStartStop.png|finish.png','bloodPressure.png'),
+(2,2,0.75,4,22,'TakeOffShoes.png|BalanceOnOff.png|beep.png|BalanceElectrodes.png|BalanceStepOff.png|BalanceOnOff.png|finish.png','weight.png'),
+(3,3,9,15,23,'','blood.png'),
+(4,4,5,5,24,'','lungs.png'),
+(5,5,6,2,25,'','eye-icon.png'),
+(6,6,2.5,10,26,'','muscle.png'),
+(7,7,9,15,27,'','blood.png');
+
+
+INSERT INTO `datatypes` VALUES
+(1,41, 2,'mm Hg','Systolic|Diastolic',1,'bloodPressure.png'),
+(2,42, 1,'bpm',NULL,1,'heartBeat.png'),
+(3,43, 1,'kg',NULL,2,'weight.png'),
+(4,44, 4,'mg/dL','Triglyceriden|Cholesterol|LDL|HDL',3,'blood.png'),
+(5,45, 1,'L',NULL,4,'lungs.png');
+
+
+INSERT INTO `measurements` VALUES
+(1,1,'2014-11-20',1,'115|78'),
+(2,1,'2014-11-21',1,'95|71'),
+(3,1,'2014-11-22',1,'109|65'),
+(4,1,'2014-11-23',1,'93|70'),
+(5,1,'2014-11-24',1,'92|76'),
+(6,1,'2014-11-25',1,'106|68'),
+(7,1,'2014-11-26',1,'112|75'),
+(8,1,'2014-11-27',1,'111|79'),
+(9,1,'2014-11-28',1,'91|62'),
+(10,1,'2014-11-29',1,'95|66'),
+(11,1,'2014-11-20',2,'64'),
+(12,1,'2014-11-21',2,'79'),
+(13,1,'2014-11-22',2,'94'),
+(14,1,'2014-11-23',2,'82'),
+(15,1,'2014-11-24',2,'91'),
+(16,1,'2014-11-25',2,'62'),
+(17,1,'2014-11-26',2,'77'),
+(18,1,'2014-11-27',2,'70'),
+(19,1,'2014-11-28',2,'79'),
+(20,1,'2014-11-29',2,'92'),
+(21,1,'2014-11-20',3,'75'),
+(22,1,'2014-11-21',3,'73'),
+(23,1,'2014-11-22',3,'75'),
+(24,1,'2014-11-23',3,'77'),
+(25,1,'2014-11-24',3,'77'),
+(26,1,'2014-11-25',3,'73'),
+(27,1,'2014-11-26',3,'78'),
+(28,1,'2014-11-27',3,'79'),
+(29,1,'2014-11-28',3,'73'),
+(30,1,'2014-11-29',3,'74'),
+(31,1,'2014-11-20',4,'315|236|126|47'),
+(32,1,'2014-11-21',4,'315|236|126|47'),
+(33,1,'2014-11-22',4,'315|236|126|47'),
+(34,1,'2014-11-23',4,'315|236|126|47'),
+(35,1,'2014-11-24',4,'315|236|126|47'),
+(36,1,'2014-11-25',4,'315|236|126|47'),
+(37,1,'2014-11-26',4,'315|236|126|47'),
+(38,1,'2014-11-27',4,'315|236|126|47'),
+(39,1,'2014-11-28',4,'315|236|126|47'),
+(40,1,'2014-11-29',4,'315|236|126|47'),
+(41,1,'2014-11-20',5,'6.1'),
+(42,1,'2014-11-21',5,'6.0'),
+(43,1,'2014-11-22',5,'6.2'),
+(44,1,'2014-11-23',5,'6.0'),
+(45,1,'2014-11-24',5,'6.1'),
+(46,1,'2014-11-25',5,'5.9'),
+(47,1,'2014-11-26',5,'6.2'),
+(48,1,'2014-11-27',5,'6.0'),
+(49,1,'2014-11-28',5,'6.0'),
+(50,1,'2014-11-29',5,'5.9');
+
+
+INSERT INTO `translations` VALUES
+(1,1,'English','Blood pressure'),
+(2,1,'Nederlands','Bloeddruk'),
+(3,1,'Francais','[Francais]Blood pressure'),
+(4,1,'Deutsch','[Deutsch]Blood pressure'),
+(5,2,'English','Scale'),
+(6,2,'Nederlands','Weegschaal'),
+(7,2,'Francais','[Francais]Scale'),
+(8,2,'Deutsch','[Deutsch]Scale'),
+(9,3,'English','Cholesterol'),
+(10,3,'Nederlands','Cholesterol'),
+(11,3,'Francais','[Francais]Cholesterol'),
+(12,3,'Deutsch','[Deutsch]Cholesterol'),
+(13,4,'English','Respiratory'),
+(14,4,'Nederlands','Ademhaling'),
+(15,4,'Francais','[Francais]Respiratory'),
+(16,4,'Deutsch','[Deutsch]Respiratory'),
+(17,5,'English','Visual'),
+(18,5,'Nederlands','Visueel'),
+(19,5,'Francais','[Francais]Visual'),
+(20,5,'Deutsch','[Deutsch]Visual'),
+(21,6,'English','Muscular'),
+(22,6,'Nederlands','Spieren'),
+(23,6,'Francais','[Francais]Muscular'),
+(24,6,'Deutsch','[Deutsch]Muscular'),
+(25,7,'English','HBA1C'),
+(26,7,'Nederlands','HBA1C'),
+(27,7,'Francais','[Francais]HBA1C'),
+(28,7,'Deutsch','[Deutsch]HBA1C'),
+(29,21,'English','If you wear a thick garment such as a jacket or sweater, please remove it. Press next to go to the next step.|Sit down with your back straight and place your feet flat on the floor.|Please wrap the strip of the blood pressure device around your left arm as shown on the picture. The bottom of the stript needs to be 1 to 2 centimeters away from your elbow.|Please press the I/O button on the blood pressure device. If something goes wrong, press this button again to stop the test.|The strip will shrink around your arm, don\'t panic. Wait until it expands again and go to the next step.|Before you progress to the next step, make sure the strip has expanded completely. Then take it off.|Did you take it off? Then press Next. You will automatically go to the next step after you press the upload button on the device. So press this button as shown on the picture.|Press the I/O button on the device one more time to shut it down.|Congratulations, you finished the test. Click finish to see your results.'),
+(30,21,'Nederlands','[Nederlands]If you wear a thick garment such as a jacket or sweater, please remove it. Press next to go to the next step.|[Nederlands]Sit down with your back straight and place your feet flat on the floor.|[Nederlands]Please wrap the strip of the blood pressure device around your left arm as shown on the picture. The bottom of the stript needs to be 1 to 2 centimeters away from your elbow.|[Nederlands]Please press the I/O button on the blood pressure device. If something goes wrong, press this button again to stop the test.|[Nederlands]The strip will shrink around your arm, don\'t panic. Wait until it expands again and go to the next step.|[Nederlands]Before you progress to the next step, make sure the strip has expanded completely. Then take it off.|[Nederlands]Did you take it off? Then press Next. You will automatically go to the next step after you press the upload button on the device. So press this button as shown on the picture.|[Nederlands]Press the I/O button on the device one more time to shut it down.|[Nederlands]Congratulations, you finished the test. Click finish to see your results.'),
+(31,21,'Francais','[Francais]If you wear a thick garment such as a jacket or sweater, please remove it. Press next to go to the next step.|[Francais]Sit down with your back straight and place your feet flat on the floor.|[Francais]Please wrap the strip of the blood pressure device around your left arm as shown on the picture. The bottom of the stript needs to be 1 to 2 centimeters away from your elbow.|[Francais]Please press the I/O button on the blood pressure device. If something goes wrong, press this button again to stop the test.|[Francais]The strip will shrink around your arm, don\'t panic. Wait until it expands again and go to the next step.|[Francais]Before you progress to the next step, make sure the strip has expanded completely. Then take it off.|[Francais]Did you take it off? Then press Next. You will automatically go to the next step after you press the upload button on the device. So press this button as shown on the picture.|[Francais]Press the I/O button on the device one more time to shut it down.|[Francais]Congratulations, you finished the test. Click finish to see your results.'),
+(32,21,'Deutsch','[Deutsch]If you wear a thick garment such as a jacket or sweater, please remove it. Press next to go to the next step.|[Deutsch]Sit down with your back straight and place your feet flat on the floor.|[Deutsch]Please wrap the strip of the blood pressure device around your left arm as shown on the picture. The bottom of the stript needs to be 1 to 2 centimeters away from your elbow.|[Deutsch]Please press the I/O button on the blood pressure device. If something goes wrong, press this button again to stop the test.|[Deutsch]The strip will shrink around your arm, don\'t panic. Wait until it expands again and go to the next step.|[Deutsch]Before you progress to the next step, make sure the strip has expanded completely. Then take it off.|[Deutsch]Did you take it off? Then press Next. You will automatically go to the next step after you press the upload button on the device. So press this button as shown on the picture.|[Deutsch]Press the I/O button on the device one more time to shut it down.|[Deutsch]Congratulations, you finished the test. Click finish to see your results.'),
+(33,22,'English','Take off your shoes and socks and move your feet away from the balance. Do not stay on the balance yet.|Look at the bottom of the balance. You see "WEIGHT/OFF". Press the button under "WEIGHT/OFF" on the frontside of the balance. You will hear a beep.|Don\'t stay on the balance yet. Wait until you hear 2 beeps and proceed to the next step.|Now, place your feet on the electrodes on the balance and stand up straight. Wait until you hear a beep.|Please step off the scale. After you did that, press next. Your data will be progressed. This will take a few seconds.|Press the WEIGHT/OFF button again and sit down.|Congratulations, you finished the test. Click finish to see your results.'),
+(34,22,'Nederlands','[Nederlands]Take off your shoes and socks and move your feet away from the balance. Do not stay on the balance yet.|[Nederlands]Look at the bottom of the balance. You see "WEIGHT/OFF". Press the button under "WEIGHT/OFF" on the frontside of the balance. You will hear a beep.|[Nederlands]Don\'t stay on the balance yet. Wait until you hear 2 beeps and proceed to the next step.|[Nederlands]Now, place your feet on the electrodes on the balance and stand up straight. Wait until you hear a beep.|[Nederlands]Please step off the scale. After you did that, press next. Your data will be progressed. This will take a few seconds.|[Nederlands]Press the WEIGHT/OFF button again and sit down.|[Nederlands]Congratulations, you finished the test. Click finish to see your results.'),
+(35,22,'Francais','[Francais]Take off your shoes and socks and move your feet away from the balance. Do not stay on the balance yet.|[Francais]Look at the bottom of the balance. You see "WEIGHT/OFF". Press the button under "WEIGHT/OFF" on the frontside of the balance. You will hear a beep.|[Francais]Don\'t stay on the balance yet. Wait until you hear 2 beeps and proceed to the next step.|[Francais]Now, place your feet on the electrodes on the balance and stand up straight. Wait until you hear a beep.|[Francais]Please step off the scale. After you did that, press next. Your data will be progressed. This will take a few seconds.|[Francais]Press the WEIGHT/OFF button again and sit down.|[Francais]Congratulations, you finished the test. Click finish to see your results.'),
+(36,22,'Deutsch','[Deutsch]Take off your shoes and socks and move your feet away from the balance. Do not stay on the balance yet.|[Deutsch]Look at the bottom of the balance. You see "WEIGHT/OFF". Press the button under "WEIGHT/OFF" on the frontside of the balance. You will hear a beep.|[Deutsch]Don\'t stay on the balance yet. Wait until you hear 2 beeps and proceed to the next step.|[Deutsch]Now, place your feet on the electrodes on the balance and stand up straight. Wait until you hear a beep.|[Deutsch]Please step off the scale. After you did that, press next. Your data will be progressed. This will take a few seconds.|[Deutsch]Press the WEIGHT/OFF button again and sit down.|[Deutsch]Congratulations, you finished the test. Click finish to see your results.'),
+(37,23,'English',''),
+(38,23,'Nederlands',''),
+(39,23,'Francais',''),
+(40,23,'Deutsch',''),
+(41,24,'English',''),
+(42,24,'Nederlands',''),
+(43,24,'Francais',''),
+(44,24,'Deutsch',''),
+(45,25,'English',''),
+(46,25,'Nederlands',''),
+(47,25,'Francais',''),
+(48,25,'Deutsch',''),
+(49,26,'English',''),
+(50,26,'Nederlands',''),
+(51,26,'Francais',''),
+(52,26,'Deutsch',''),
+(53,27,'English',''),
+(54,27,'Nederlands',''),
+(55,27,'Francais',''),
+(56,27,'Deutsch',''),
+(57,41,'English','Blood pressure'),
+(58,41,'Nederlands','Bloeddruk'),
+(59,41,'Francais','[Francais]Blood pressure'),
+(60,41,'Deutsch','[Deutsch]Blood pressure'),
+(61,42,'English','Heart rate'),
+(62,42,'Nederlands','Hartslag'),
+(63,42,'Francais','[Francais]Heart rate'),
+(64,42,'Deutsch','[Deutsch]Heart rate'),
+(65,43,'English','Weight'),
+(66,43,'Nederlands','Gewicht'),
+(67,43,'Francais','[Francais]Weight'),
+(68,43,'Deutsch','[Deutsch]Weight'),
+(69,44,'English','Cholesterol'),
+(70,44,'Nederlands','Cholesterol'),
+(71,44,'Francais','[Francais]Cholesterol'),
+(72,44,'Deutsch','[Deutsch]Cholesterol'),
+(73,45,'English','Respiratory'),
+(74,45,'Nederlands','Ademhaling'),
+(75,45,'Francais','[Francais]Respiratory'),
+(76,45,'Deutsch','[Deutsch]Respiratory'),
+(77,61,'English','Balance'),
+(78,61,'Nederlands','Krediet'),
+(79,61,'Francais','[Francais]Balance'),
+(80,61,'Deutsch','[Deutsch]Balance'),
+(81,101,'English','Trouble with your card?|Finding your card|Have you checked your wallet yet?|Finding the reader|Right in front of you.|Still no luck?|Please go to the desk and explain to the clerk you cannot figure out how to use a card reader.'),
+(82,101,'Nederlands','Problemen met de kaart?|Vind je kaart|Heb je geprobeerd om je portefeuille eens open te doen?|De lezer vinden|Vlak voor je.|Nog steeds niet gelukt?|Gelieve u naar de balie te begeven en aan de assistent uit te leggen dat u niet weet hoe een kaartlezer werkt.'),
+(83,101,'Francais','Problème avec votre carte?|Trouver votre carte|Avez-vous vérifié encore votre portefeuille?|Trouver le lecteur|Juste en face de vous.|Toujours pas de chance?|Se il vous plaît aller à la réception et expliquer au greffier vous ne pouvez pas comprendre comment utiliser un lecteur de carte.'),
+(84,101,'Deutsch','Probleme mit Ihrer Karte?|Finden Sie Ihre Karte|Haben Sie Ihre Brieftasche noch überprüft?|Das Finden der Leser|Direkt vor Ihnen.|Noch kein Glück?|Bitte gehen Sie zur Rezeption und erklären, an die Geschäftsstelle können Sie nicht herausfinden, wie man einen Kartenleser verwenden.'),
+(85,102,'English','Please insert your BeWell card'),
+(86,102,'Nederlands','Gelieve uw BeWell kaart in te voeren'),
+(87,102,'Francais','Se il vous plaît insérer votre carte BeWell'),
+(88,102,'Deutsch','Bitte geben Sie Ihre BeWell Karte'),
+(89,103,'English','There is a problem with the video, don\'t worry.<br />Ask the pharmacist for help if you have any problems.'),
+(90,103,'Nederlands','Er is een probleem met de video.<br />Vraag de apotheker om hulp bij problemen'),
+(91,103,'Francais','[Francais]There is a problem with the video, don\'t worry.<br />Ask the pharmacist for help if you have any problems.'),
+(92,103,'Deutsch','[Deutsch]There is a problem with the video, don\'t worry.<br />Ask the pharmacist for help if you have any problems.'),
+(93,121,'English','Welcome back'),
+(94,121,'Nederlands','Welkom terug'),
+(95,121,'Francais','[Francais]Welcome back'),
+(96,121,'Deutsch','[Deutsch]Welcome back'),
+(97,141,'English','Trouble choosing what you want?|Select test|Click here if you want to take a test!|Previous Results|Press this to check out your results from previous tests you\'ve taken.|Recharge balance|Add some money to your credit, use this when your balance is to low to perform another test.|Log out|This button ends your session, press this when you want to exit.'),
+(98,141,'Nederlands','Weet je niet wat te kiezen?|Kies test|Klik hier als je een test wil uitvoeren!|Vroegere Resultaten|Gebruik deze optie om de resultaten te bekijken van testen die je eerder genomen hebt.|Herladen|Voeg geld toe aan uw resterend krediet, gebruik deze optie als je krediet te laag is om nog een nieuwe test uit te voeren.|Uitloggen|Deze knop beëindigd uw sessie, gebruik deze knop wanneer je wil afsluiten.'),
+(99,141,'Francais','[Francais]Trouble choosing what you want?|[Francais]Select test|[Francais]Click here if you want to take a test!|[Francais]Previous Results|[Francais]Press this to check out your results from previous tests you\'ve taken.|[Francais]Recharge balance|[Francais]Add some money to your credit, use this when your balance is to low to perform another test.|[Francais]Log out|[Francais]This button ends your session, press this when you want to exit.'),
+(100,141,'Deutsch','[Deutsch]Trouble choosing what you want?|[Deutsch]Select test|[Deutsch]Click here if you want to take a test!|[Deutsch]Previous Results|[Deutsch]Press this to check out your results from previous tests you\'ve taken.|[Deutsch]Recharge balance|[Deutsch]Add some money to your credit, use this when your balance is to low to perform another test.|[Deutsch]Log out|[Deutsch]This button ends your session, press this when you want to exit.'),
+(101,142,'English','Home'),
+(102,142,'Nederlands','Thuispagina'),
+(103,142,'Francais','[Francais]Home'),
+(104,142,'Deutsch','[Deutsch]Home'),
+(105,143,'English','Select Test'),
+(106,143,'Nederlands','Kies Test'),
+(107,143,'Francais','[Francais]Select Test'),
+(108,143,'Deutsch','[Deutsch]Select Test'),
+(109,144,'English','Previous Results'),
+(110,144,'Nederlands','Vorige Resultaten'),
+(111,144,'Francais','[Francais]Previous Results'),
+(112,144,'Deutsch','[Deutsch]Previous Results'),
+(113,145,'English','Recharge Balance'),
+(114,145,'Nederlands','Krediet Herladen'),
+(115,145,'Francais','[Francais]Recharge Balance'),
+(116,145,'Deutsch','[Deutsch]Recharge Balance'),
+(117,146,'English','Log Out'),
+(118,146,'Nederlands','Uitloggen'),
+(119,146,'Francais','[Francais]Log Out'),
+(120,146,'Deutsch','[Deutsch]Log Out'),
+(121,161,'English', 'Choose test'),
+(122,161,'Nederlands', 'Kies test'),
+(123,161,'Francais', '[Francais]Choose test'),
+(124,161,'Deutsch', '[Deutsch]Choose test'),
+(125,162,'English','Other Tests'),
+(126,162,'Nederlands','Andere Testen'),
+(127,162,'Francais','[Francais]Other Tests'),
+(128,162,'Deutsch','[Deutsch]Other Tests'),
+(129,163,'English','BACK'),
+(130,163,'Nederlands','TERUG'),
+(131,163,'Francais','[Francais]BACK'),
+(132,163,'Deutsch','[Deutsch]BACK'),
+(133,164,'English','Don\'t know which test to choose?|Blood pressure|Click this button if you want to measure your blood pressure.|Heart beat|Click this button if you want to measure your pulse or heart rithm.|Weight|Click this button if you want to check your weight.|Other tests|Didn\'t find what you were looking for? Click this button to check other available tests!'),
+(134,164,'Nederlands','[Nederlands]Don\'t know which test to choose?|Blood pressure|Click this button if you want to measure your blood pressure.|Heart beat|Click this button if you want to measure your pulse or heart rithm.|Weight|Click this button if you want to check your weight.|Other tests|Didn\'t find what you were looking for? Click this button to check other available tests!'),
+(135,164,'Francais','[French]Don\'t know which test to choose?|Blood pressure|Click this button if you want to measure your blood pressure.|Heart beat|Click this button if you want to measure your pulse or heart rithm.|Weight|Click this button if you want to check your weight.|Other tests|Didn\'t find what you were looking for? Click this button to check other available tests!'),
+(136,164,'Deutsch','[Deutsch]Don\'t know which test to choose?|Blood pressure|Click this button if you want to measure your blood pressure.|Heart beat|Click this button if you want to measure your pulse or heart rithm.|Weight|Click this button if you want to check your weight.|Other tests|Didn\'t find what you were looking for? Click this button to check other available tests!'),
+(137,171,'English','You are about to start a '),
+(138,171,'Nederlands','Je staat op het punt om een '), 
+(139,171,'Francais','[Francais]You are about to start a '),
+(140,171,'Deutsch','[Deutsch]You are about to start a '),
+(141,172,'English',' test.'),
+(142,172,'Nederlands',' test te nemen'),
+(143,172,'Francais',' test'),
+(144,172,'Deutsch',' test'),
+(145,173,'English','This test will take approximately '),
+(146,173,'Nederlands','Deze test zal ongeveer '),
+(147,173,'Francais','This test will take approximately '),
+(148,173,'Deutsch','This test will take approximately '),
+(149,174,'English',' minutes'),
+(150,174,'Nederlands',' minuten duren'),
+(151,174,'Francais',' minutes'),
+(152,174,'Deutsch',' minutes'),
+(153,175,'English','This test will cost you '),
+(154,175,'Nederlands','Deze test kost jou '),
+(155,175,'Francais','This test will cost you '),
+(156,175,'Deutsch','This test will cost you '),
+(157,176,'English','You need '),
+(158,176,'Nederlands','Je hebt '),
+(159,176,'Francais','[Francais]You need '),
+(160,176,'Deutsch','[Deutsch]You need '),
+(161,177,'English',' more to perform this test'),
+(162,177,'Nederlands',' meer nodig om deze test uit te voeren'),
+(163,177,'Francais','[Francais] more to perform this test'),
+(164,177,'Deutsch','[Deutsch] more to perform this test'),
+(165,178,'English','Back'),
+(166,178,'Nederlands','Terug'),
+(167,178,'Francais','[Francais]Back'),
+(168,178,'Deutsch','[Deutsch]Back'),
+(169,179,'English','Accept'),
+(170,179,'Nederlands','Accepteer'),
+(171,179,'Francais','[Francais]Accept'),
+(172,179,'Deutsch','[Deutsch]Accept'),
+(173,180,'English','Instructions unclear?|Back|Press the back button if you do not want to take this test.|Accept|Press the accept button if you want to take this test. The cost of this test will be deducted from your account.'),
+(174,180,'Nederlands','[Nederlands]Instructions unclear?|Back|Press the back button if you do not want to take this test.|Accept|Press the accept button if you want to take this test. The cost of this test will be deducted from your account.'),
+(175,180,'Francais','[Francais]Instructions unclear?|Back|Press the back button if you do not want to take this test.|Accept|Press the accept button if you want to take this test. The cost of this test will be deducted from your account.'),
+(176,180,'Deutsch','[Deutsch]Instructions unclear?|Back|Press the back button if you do not want to take this test.|Accept|Press the accept button if you want to take this test. The cost of this test will be deducted from your account.'),
+(177,181,'English','Previous'),
+(178,181,'Nederlands','Vorige'),
+(179,181,'Francais','[Francais]Previous'),
+(180,181,'Deutsch','[Deutsch]Previous'),
+(181,182,'English','Instruction video'),
+(182,182,'Nederlands','Instructie video'),
+(183,182,'Francais','[Francais]Instruction video'),
+(184,182,'Deutsch','[Deutsch]Instruction video'),
+(185,183,'English','Next'),
+(186,183,'Nederlands','Volgende'),
+(187,183,'Francais','[Francais]Next'),
+(188,183,'Deutsch','[Deutsch]Next'),
+(189,184,'English','Finish'),
+(190,184,'Nederlands','Voltooien'),
+(191,184,'Francais','[Francais]Finish'),
+(192,184,'Deutsch','[Deutsch]Finish'),
+(193,185, 'English', 'Instructions unclear?|Trouble navigating?|You can navigate through the steps by using the Next and Previous buttons, tapping the navigation bar at the top, or by tapping the instructions themselves.|Do you want to watch a video of the instructions?|Tap the "Instruction video" button.|Finished?|At the last step press the Finish button to continue to your results.'),
+(194,185,'Nederlands','[Nederlands]Instructions unclear?|Trouble navigating?|You can navigate through the steps by using the Next and Previous buttons, tapping the navigation bar at the top, or by tapping the instructions themselves.|Do you want to watch a video of the instructions?|Tap the "Instruction video" button.|Finished?|At the last step press the Finish button to continue to your results.'),
+(195,185,'Francais','[Francais]Instructions unclear?|Trouble navigating?|You can navigate through the steps by using the Next and Previous buttons, tapping the navigation bar at the top, or by tapping the instructions themselves.|Do you want to watch a video of the instructions?|Tap the "Instruction video" button.|Finished?|At the last step press the Finish button to continue to your results.'),
+(196,185,'Deutsch','[Deutsch]Instructions unclear?|Trouble navigating?|You can navigate through the steps by using the Next and Previous buttons, tapping the navigation bar at the top, or by tapping the instructions themselves.|Do you want to watch a video of the instructions?|Tap the "Instruction video" button.|Finished?|At the last step press the Finish button to continue to your results.');

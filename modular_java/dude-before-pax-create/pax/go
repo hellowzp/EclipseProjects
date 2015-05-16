@@ -1,0 +1,2 @@
+#!/bin/sh
+pax-run.sh --args=file:repos.lst --profiles=log,url --logging=WARN --platform=equinox dude.bundles

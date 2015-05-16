@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ! Excerpted from "Modular Java",
+ ! published by The Pragmatic Bookshelf.
+ ! Copyrights apply to this code. It may not be used to create training material, 
+ ! courses, books, articles, and the like. Contact us if you are in doubt.
+ ! We make no guarantees that this code is fit for any purpose. 
+ ! Visit http://www.pragmaticprogrammer.com/titles/cwosg for more book information.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.dudewheresmyjar</groupId>
+  <artifactId>dude-parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>dude-parent</name>
+  <url>http://maven.apache.org</url>
+
+  <repositories>
+    <repository>
+      <id>compass-project.org</id>
+      <name>Compass</name>
+      <url>http://repo.compass-project.org</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+      <plugin>
+         <artifactId>maven-compiler-plugin</artifactId>
+         <configuration>
+            <source>1.5</source>
+            <target>1.5</target>
+         </configuration>
+      </plugin>
+      <!-- <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+          </archive>
+        </configuration>
+      </plugin> -->
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.4</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <modules>
+    <module>domain</module>
+    <module>index-service</module>
+    <module>spider</module>
+    <module>web</module>
+  </modules>
+</project>

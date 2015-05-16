@@ -1,0 +1,6 @@
+[][][][]blood_pressure_test
+[]blood_pressure_test
+[{"date":"2014-11-25 15:30:58","value":"38.5"},{"date":"2014-11-25 15:31:15","value":"39.4"}]blood_pressure_test
+falseblood_pressure_test
+falseblood_pressure_test
+{"value":["36.4","37.2","38.5","39.4"],"time":["2014-11-25 15:29:58","2014-11-25 15:30:40","2014-11-25 15:30:58","2014-11-25 15:31:15"]}blood_pressure_test

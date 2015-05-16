@@ -1,0 +1,16 @@
+# START:spring.context.wildcard
+Spring-Context: spring-config/*.xml
+# END:spring.context.wildcard
+
+# START:spring.context.list
+Spring-Context: spring-config/some-beans.xml, \
+  spring-config/some-more-beans.xml
+# END:spring.context.list
+
+# START:spring.context.publish
+Spring-Context: META-INF/spring/*.xml;publish-context:=false
+# END:spring.context.publish
+
+# START:spring.context.timeout
+Spring-Context: META-INF/spring/*.xml;timeout:=120
+# END:spring.context.timeout

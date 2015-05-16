@@ -1,0 +1,1 @@
+java -jar omronBT.jar --server

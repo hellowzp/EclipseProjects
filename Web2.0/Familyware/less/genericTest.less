@@ -1,0 +1,109 @@
+
+@main-font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+ul{
+	list-style-type: none;
+	font-size: 25px;
+	font-weight: bold;
+	margin: 0px;
+	padding: 10px;
+	padding-left: 0px;
+	margin-bottom: 10px;
+}
+
+li{
+	display: inline;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+.step{
+	position: absolute;
+	top: 20px;
+	left: 50px;
+	font: @main-font-family;
+	font-size: 25px;
+}
+
+#instructions{
+	font-size: 20px;
+	border: 1px solid black;
+}
+
+.button{
+	position:absolute;
+	top:620px;
+	width: 230px;
+    height: 50px;
+	margin-left: auto;
+ 	margin-right: auto;
+ 	margin-bottom: 10px;
+ 	padding-top: 5px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 7px;
+    background-image: -webkit-linear-gradient(top,#FFF 0%,#91BDD6 100%);
+    border: solid #91BDD6 5px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: @main-font-family;
+    cursor: pointer;
+}
+
+.button:active{
+	background-image: -webkit-linear-gradient(top,#FFF 0%,#91FDD6 100%);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.carouselText{
+	position: absolute;
+	font-family: @main-font-family;
+	left: 50px;
+	font-size: 20px;
+	width: 200px;
+	line-height: 24px;
+	top: 50px;
+}
+
+.picture{
+	display: inline-block;
+	width: 250px;
+	vertical-align: middle;
+}
+
+.video{
+	position: absolute;
+	top: 50px;
+	left: 250px;
+}
+
+.emergency{
+	margin-left:120px;
+	color:grey;
+	position:relative;
+	top:200px;
+}
+
+.slide{
+	 border: 2px solid #0060C1;
+	 background-image: url('../images/backgroundCarousel.jpg');
+	 border-radius: 50px;
+	 width: 600px;
+	 height: 300px;
+}
+
+
+.slidePicture {
+	position: absolute;
+	right: 50px;
+	width: 250px;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+}

@@ -1,0 +1,21 @@
+#-----------------------------------------------------------------
+# Use this file to add customized Bnd instructions for the bundle
+#-----------------------------------------------------------------
+# START:compass.imports
+Import-Package: *, \
+  org.compass.core.engine.naming, \
+  org.compass.core.executor.concurrent, \
+  org.compass.core.cache.first, \
+  org.compass.core.lucene.engine.analyzer, \
+  org.compass.core.lucene.engine.optimizer, \
+  org.compass.core.transaction, \
+  org.apache.lucene.index, \
+  org.apache.lucene, \
+  org.apache.lucene.document, \
+  org.apache.lucene.queryParser, \
+  org.apache.lucene.search, \
+  org.apache.lucene.store, \
+  org.apache.lucene.util,\
+  org.compass.core.config.binding.metadata,\
+  org.compass.core.json.impl.converter
+# END:compass.imports

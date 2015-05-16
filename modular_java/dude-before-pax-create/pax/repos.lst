@@ -1,0 +1,1 @@
+--repositories=+http://repository.ops4j.org/maven2,http://s3.amazonaws.com/maven.springframework.org/milestone,http://s3.amazonaws.com/maven.springframework.org/osgi@snapshots,http://s3.amazonaws.com/maven.springframework.org/snapshot@snapshots,http://repo.compass-project.org

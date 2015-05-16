@@ -1,0 +1,8 @@
+<function name="RSFC" nameKey="" code="123" preactivation="false" deviceTypeBound="false">
+	<description></description>
+	<inputParameters>
+		<complexParameter name="SDFC" type="AddObjectDTO">
+			<description></description>
+		</complexParameter>
+	</inputParameters>
+</function>
