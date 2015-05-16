@@ -1,0 +1,3 @@
+see Core Java Volume 2 page 100. 
+if running from the current directory, it prints "D:\my_documents\engineering_files\eclipse\Code_Geek\ResourceDirectory"
+if otherwise running with java -cp ResourceDirectory CD, it will print "D:\my_documents\engineering_files\eclipse\Code_Geek"

@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sat Jan 12 10:05:47 CST 2013
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=E\:\\java\\minimusicBox\\minimusicServer\\miniMusicServer_beta.jar
+manifest.mergeall=true
+manifest.mainclass=musicServer.view.ServerFrame
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=

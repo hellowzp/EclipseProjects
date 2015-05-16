@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Mon Jan 07 18:36:10 CST 2013
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=miniMusicClient_beta.jar
+manifest.mergeall=true
+manifest.mainclass=musicClient.view.WelcomeFrame
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=
