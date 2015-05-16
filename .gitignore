@@ -6,8 +6,12 @@ build/
 bin/
 
 .metadata/
+.backup
+
 RemoteSystemsTempFiles/
 runtime-plugin-sandbox/
+Servers/
+AlcatelHDMPlugin/
 HDMCustomFunction/
 JSpider/output/
 
