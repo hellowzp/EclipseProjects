@@ -20,6 +20,7 @@ import java.util.HashMap;
 public class MaxResourcesPerSiteRule extends BaseRuleImpl {
 
     public static final String MAX = "max";
+    
 
     protected int max;
     protected Map counters;
