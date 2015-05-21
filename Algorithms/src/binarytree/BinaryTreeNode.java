@@ -2,7 +2,7 @@ package binarytree;
 
 public class BinaryTreeNode<T> {
 	protected T element;
-	protected BinaryTreeNode<T> parent, left, right;
+	protected BinaryTreeNode<T> left, right;
 	
 	public BinaryTreeNode(T element) {
 		this.element = element;
@@ -16,22 +16,12 @@ public class BinaryTreeNode<T> {
 		this.element = element;
 	}
 
-	public final BinaryTreeNode<T> getParent() {
-		return parent;
-	}
-
-//	public void setParent(BinaryTreeNode<T> parent) {
-//		this.parent = parent;
-//	}
-
 	public final BinaryTreeNode<T> getLeft() {
 		return left;
 	}
 
 	public final void setLeft(BinaryTreeNode<T> left) {
 		this.left = left;
-		if(left!=null) 
-			left.parent = this;
 	}
 
 	public final BinaryTreeNode<T> getRight() {
@@ -40,8 +30,6 @@ public class BinaryTreeNode<T> {
 
 	public final void setRight(BinaryTreeNode<T> right) {
 		this.right = right;
-		if(right!=null) 
-			right.parent = this;
 	}
 	
 	//post-order traversal:  the node is processed after both children are processed recursively
@@ -64,11 +52,9 @@ public class BinaryTreeNode<T> {
 		BinaryTreeNode<T> root = new BinaryTreeNode<>(element);
 		if(left!=null) {
 			root.left = left.duplicate();
-			root.left.parent = root;
 		}		
 		if(right!=null) {
 			root.right = right.duplicate();
-			root.right.parent = root;
 		}			
 		return root;
 	}
@@ -86,7 +72,7 @@ public class BinaryTreeNode<T> {
 		if(left!=null) left.clear();
 		if(right!=null) right.clear();
 		element = null;
-		parent = null;
+//		parent = null;
 		left = null;
 		right = null;
 	}
