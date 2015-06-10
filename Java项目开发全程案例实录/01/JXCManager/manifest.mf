@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: com.lzw.JXCFrame
-Class-Path: . lib\msbase.jar lib\mssqlserver.jar lib\msutil.jar
