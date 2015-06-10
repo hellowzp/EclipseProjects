@@ -1,4 +1,0 @@
-Just some tiny file for testing.
-
-And yet another line.
-End 
