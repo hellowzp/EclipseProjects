@@ -9,7 +9,8 @@ import java.util.Collection;
  *
  * @param <T>
  */
-public class BinaryHeap<T extends Comparable<? super T>> {
+public class BinaryHeap < T extends Comparable<? super T>> 
+			 			implements IHeap<T> {
 	private int size;
 	private T[] elementData;
 	
@@ -62,7 +63,7 @@ public class BinaryHeap<T extends Comparable<? super T>> {
 		return size;
 	}
 	
-	public void add(T element) {
+	public void insert(T element) {
 		ensureCapacity(size+1);
 		elementData[size++] = element;
 		bubbleUp(size-1);
@@ -116,7 +117,7 @@ public class BinaryHeap<T extends Comparable<? super T>> {
 		
 		BinaryHeap<E> heap = new BinaryHeap<>(amount);
 		for(int i=0; i<amount; i++)
-			heap.add(array[i]);
+			heap.insert(array[i]);
 		for(int i=amount; i<array.length; i++) {
 			if(array[i].compareTo(heap.peak())==-1) {
 				heap.elementData[0] = array[i];
@@ -127,7 +128,7 @@ public class BinaryHeap<T extends Comparable<? super T>> {
 		return heap.elementData;
 	}
 	
-	public static <E extends Comparable<? super E>> void sort(E[] array) {
+	public static <E extends Comparable<? super E>> void heapSort(E[] array) {
 		new BinaryHeap<>(array, array.length).sortHeap();
 	}
 	
@@ -250,7 +251,7 @@ public class BinaryHeap<T extends Comparable<? super T>> {
 	public static void main(String[] args) {
 		BinaryHeap<Integer> heap = new BinaryHeap<>();
 		for(int i=1;i<=8;i++) {
-			heap.add(i);
+			heap.insert(i);
 		}
 		System.out.println(Arrays.toString(heap.toArray()));
 		heap.extract();
@@ -264,7 +265,7 @@ public class BinaryHeap<T extends Comparable<? super T>> {
 
 		System.out.println(Arrays.toString( BinaryHeap.findTops(array, 5)));
 		
-		BinaryHeap.sort(array);
+		BinaryHeap.heapSort(array);
 		System.out.println(Arrays.toString(array));
 	}
 }

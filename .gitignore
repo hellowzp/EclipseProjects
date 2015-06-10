@@ -2,8 +2,8 @@
 *.classpath
 *.DS_Store
 
-build/
-bin/
+**/build/**
+**/bin/**
 
 .metadata/
 .backup
@@ -11,6 +11,7 @@ bin/
 RemoteSystemsTempFiles/
 runtime-plugin-sandbox/
 Servers/
+
 AlcatelHDMPlugin/
 HDMCustomFunction/
 JSpider/output/

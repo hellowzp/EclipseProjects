@@ -69,7 +69,7 @@ public class ArraySortor {
 	}
 	
 	public static <T extends Comparable<? super T>> void heapSort( T[] a) {
-		BinaryHeap.sort(a);
+		BinaryHeap.heapSort(a);
 	}
 
 	/**

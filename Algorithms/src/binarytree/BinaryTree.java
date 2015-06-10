@@ -26,8 +26,9 @@ public class BinaryTree<T> {
 		return root!=null;
 	}
 	
-	public void merge() {
-		
+	public BinaryTree<T> merge(BinaryTree<T> tree) {
+		BinaryTree<T> mergedTree = null;
+		return mergedTree;
 	}
 	
 	public void clear() {
