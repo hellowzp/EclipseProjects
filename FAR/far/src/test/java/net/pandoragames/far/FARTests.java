@@ -76,7 +76,7 @@ public class FARTests extends TestCase {
     	try {
     		FileSelector selector = new FileSelector();
     		Pattern pattern = SimpleFileNamePattern.getInstance().createPattern("*.txt", true);
-    		Set fileSet = selector.listFiles(pattern, testDir);
+    		Set<?> fileSet = selector.listFiles(pattern, testDir);
     		assertEquals( 2, fileSet.size());
     	} catch (Exception x) {
     		x.printStackTrace();

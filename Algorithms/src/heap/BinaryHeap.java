@@ -5,12 +5,12 @@ import java.util.Collection;
 
 /**
  * Dynamic Max BinaryHeap
+ * 
  * @author Benchun
  *
  * @param <T>
  */
-public class BinaryHeap < T extends Comparable<? super T>> 
-			 			implements IHeap<T> {
+public class BinaryHeap <T extends Comparable<? super T>> implements IHeap<T> {
 	private int size;
 	private T[] elementData;
 	
@@ -48,6 +48,7 @@ public class BinaryHeap < T extends Comparable<? super T>>
 	/**
 	 * avoid allocating memory for the array
 	 * called by sort() for in-place heap-sort
+	 * and build heap from collection
 	 */
 	private BinaryHeap(T[] array, int dummy) {
 		elementData = array;
@@ -135,7 +136,7 @@ public class BinaryHeap < T extends Comparable<? super T>>
 	/**
 	 * refer to the implementation in ArrayList
 	 */
-	public void clear() {
+	public void distroy() {
         for (int i = 0; i < size; i++)
             elementData[i] = null;
         size = 0;

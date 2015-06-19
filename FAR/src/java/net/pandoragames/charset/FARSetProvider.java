@@ -5,7 +5,6 @@ import java.nio.charset.spi.CharsetProvider;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  * CharsetProvider for CP437Extra.
