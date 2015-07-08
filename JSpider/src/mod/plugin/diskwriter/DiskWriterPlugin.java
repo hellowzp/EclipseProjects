@@ -90,6 +90,7 @@ public class DiskWriterPlugin implements Plugin {
         }
     }
 
+    /* use system-level read/write ==> low performance
     protected void writeFile(File outputFile, InputStream is) {
         try {
             FileOutputStream fos = new FileOutputStream(outputFile);
@@ -102,6 +103,35 @@ public class DiskWriterPlugin implements Plugin {
         } catch (IOException e) {
             log.error("i/o error writing file", e);
        }
+    }
+    */
+    
+    protected void writeFile(File outputFile, InputStream is) {
+    	OutputStream os = null;	
+		try {
+			os = new FileOutputStream(outputFile);		
+			int bufSize = 1024;
+			byte[] buf = new byte[bufSize];
+			int len = 0;
+			while(( len = is.read(buf, 0, bufSize)) > 0)
+				os.write(buf,0,len);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try{ 
+				if (is != null) is.close(); 
+			} catch(IOException e) { 
+				e.printStackTrace(); 
+			}
+
+			try {
+				if (os != null) os.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
     }
 
     protected void ensureFolders( File folder) {

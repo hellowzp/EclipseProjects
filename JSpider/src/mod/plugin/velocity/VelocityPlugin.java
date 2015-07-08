@@ -7,6 +7,7 @@ import core.logging.Log;
 import core.logging.LogFactory;
 import core.util.config.*;
 import spi.Plugin;
+
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -43,7 +44,7 @@ public class VelocityPlugin implements Plugin {
 
     protected String name;
     protected PropertySet config;
-    protected Map templates;
+    protected Map<String, Template> templates;
     protected Writer traceWriter;
     protected Writer dumpWriter;
     protected VelocityEngine velocityEngine;
@@ -90,7 +91,7 @@ public class VelocityPlugin implements Plugin {
             JSpiderConfiguration jspiderConfig = ConfigurationFactory.getConfiguration();
             File folder = jspiderConfig.getPluginConfigurationFolder(templateFolderName);
             velocityEngine = new VelocityEngine();
-            Vector paths = new Vector();
+            Vector<String> paths = new Vector<String>();
             paths.add(folder.getAbsolutePath());
             velocityEngine.setProperty("file.resource.loader.path", paths);
             log.debug("file.resource.loader.path set to " + folder.getAbsolutePath());
@@ -114,7 +115,7 @@ public class VelocityPlugin implements Plugin {
         } catch (Exception e) {
             log.error("exception", e);
         }
-        templates = new HashMap();
+        templates = new HashMap<String, Template>();
     }
 
     public void shutdown() {

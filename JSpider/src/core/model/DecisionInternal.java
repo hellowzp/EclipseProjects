@@ -17,7 +17,7 @@ public class DecisionInternal implements Decision {
 
     protected int type;
     protected String comment;
-    protected ArrayList history;
+    protected ArrayList<DecisionStepInternal> history;
 
     public DecisionInternal() {
         this(Decision.RULE_DONTCARE);
@@ -30,7 +30,7 @@ public class DecisionInternal implements Decision {
     public DecisionInternal(int type, String comment) {
         this.type = type;
         this.comment = comment;
-        this.history = new ArrayList();
+        this.history = new ArrayList<DecisionStepInternal>();
     }
 
     public int getDecision() {
