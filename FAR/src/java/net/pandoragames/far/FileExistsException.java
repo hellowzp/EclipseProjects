@@ -28,6 +28,11 @@ public class FileExistsException extends IOException
 {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Specify target file name and directory.
 	 * @param name target file name
 	 * @param dir directory

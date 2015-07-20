@@ -6,6 +6,5 @@ public interface IHeap<T extends Comparable<? super T>> {
 	int size();
 	boolean isEmpty();
 	void insert(T element);
-	void clear();
-	T[] toArray();
+	void distroy();
 }

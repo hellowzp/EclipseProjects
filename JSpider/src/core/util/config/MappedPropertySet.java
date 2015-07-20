@@ -1,7 +1,6 @@
 package core.util.config;
 
 /**
- * $Id: MappedPropertySet.java,v 1.1 2003/04/01 19:44:41 vanrogu Exp $
  * just provide a convernience for properties having the same prefix 
  */
 public class MappedPropertySet implements PropertySet {
