@@ -88,7 +88,7 @@ public class SkewHeap <T extends Comparable<? super T>>
 		}
 	}
 	
-	private BinaryTreeNode<T> nonrecursiveMerge(BinaryTreeNode<T> left, BinaryTreeNode<T> right) {
+	public BinaryTreeNode<T> nonrecursiveMerge(BinaryTreeNode<T> left, BinaryTreeNode<T> right) {
 		return this.root;
 	}
 

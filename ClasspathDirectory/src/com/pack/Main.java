@@ -20,7 +20,7 @@ public class Main {
 		else
 			filename = "lib/res";
 		
-		//file io interprete relative path based on the current working dir
+		//file io interpretes relative path based on the current working dir
 		try (InputStream is = new FileInputStream(filename)) {
 			is.hashCode();
 		} catch (IOException e1) {
@@ -45,7 +45,7 @@ public class Main {
 		//by default only the src dir is added to the classpath
 		InputStream is2 = Main.class.getResourceAsStream("/lib/res");
 		try {
-			Files.copy(is2, Paths.get("copy"+Math.random()));  //will be creted in the user.dir
+			Files.copy(is2, Paths.get("copy"+Math.random()));  //will be created in the user.dir
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
