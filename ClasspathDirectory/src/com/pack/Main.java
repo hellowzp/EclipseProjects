@@ -42,7 +42,7 @@ public class Main {
 		
 		//this method interpretes absolute path based on the classpath
 		//thus in this case the project root dir must be added to classpath 
-		//by default only the src dir is added to the classpath
+		//in eclipse by default only the src dir is added to the classpath 
 		InputStream is2 = Main.class.getResourceAsStream("/lib/res");
 		try {
 			Files.copy(is2, Paths.get("copy"+Math.random()));  //will be created in the user.dir

@@ -45,6 +45,6 @@ public class BritneyDilemma {
 	}
 
 	public static void main(String[] args) {
-		BritneyDilemma bd = new BritneyDilemma();
+		new BritneyDilemma();
 	}
 }

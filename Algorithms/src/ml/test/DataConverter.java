@@ -10,10 +10,8 @@ public class DataConverter {
 		try {
 			FileWriter outputWriter = new FileWriter(
 					"/Users/Jason/Downloads/output.dat");
-			int txcount = 0;
-
-			BufferedReader csvReader = new BufferedReader(new FileReader(
-					"/Users/Jason/Downloads/rawdata.csv"));
+			BufferedReader csvReader = new BufferedReader(
+					new FileReader("/Users/Jason/Downloads/rawdata.csv"));
 
 			// read the first line in but do nothing with it.
 			String thisLine = csvReader.readLine();
@@ -41,7 +39,6 @@ public class DataConverter {
 					i++;
 				}
 				outputWriter.append("\n");
-				txcount++;
 			}
 			outputWriter.close();
 		} catch (Exception e) {
@@ -50,7 +47,6 @@ public class DataConverter {
 	}
 
 	public static void main(String[] args) {
-		DataConverter dc = new DataConverter();
-
+		new DataConverter();
 	}
 }

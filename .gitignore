@@ -3,6 +3,7 @@
 
 **/build/**
 **/bin/**
+**/download/**
 
 .metadata/
 .backup
