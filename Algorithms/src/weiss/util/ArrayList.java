@@ -6,7 +6,8 @@ package weiss.util;
  */
 public class ArrayList<AnyType> extends AbstractCollection<AnyType> implements List<AnyType>
 {
-    /**
+	private static final long serialVersionUID = 1L;
+	/**
      * Construct an empty ArrayList.
      */
     public ArrayList( )
@@ -29,7 +30,11 @@ public class ArrayList<AnyType> extends AbstractCollection<AnyType> implements L
 
     private class SubList extends ArrayList<AnyType>
     {
-        private List<AnyType> original;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private List<AnyType> original;
         private int offset;
         private int size;
 

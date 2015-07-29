@@ -6,7 +6,9 @@ package weiss.util;
  */
 public abstract class AbstractCollection<AnyType> implements Collection<AnyType>
 {
-    /**
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Tests if this collection is empty.
      * @return true if the size of this collection is zero.
      */
@@ -44,12 +46,12 @@ public abstract class AbstractCollection<AnyType> implements Collection<AnyType>
         return copy;    
     }
     
-    public <OtherType> OtherType [ ] toArray( OtherType [ ] arr )
+    public <OtherType> OtherType[] toArray( OtherType [] arr )
     {
         int size = size( );
         
         if( arr.length < size )
-            arr = ( OtherType [ ] )java.lang.reflect.Array.newInstance( arr.getClass( ).getComponentType( ), size );
+            arr = ( OtherType[] )java.lang.reflect.Array.newInstance( arr.getClass( ).getComponentType( ), size );
         else if( size < arr.length )
             arr[ size ] = null;
         
